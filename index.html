@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7c9d7">
+  <title>Doceria Prazeres | Doces feitos com carinho</title>
+  <style>
+    :root {
+      --pink: #f7c9d7;
+      --pink-dark: #c95d83;
+      --cream: #fff9f2;
+      --brown: #593b35;
+      --mint: #dcefe3;
+      --shadow: 0 10px 28px rgba(89,59,53,.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--cream); color: var(--brown);
+      font-family: "Trebuchet MS", Arial, sans-serif; line-height: 1.5;
+    }
+    header {
+      text-align: center; padding: 30px 18px 26px;
+      background: linear-gradient(135deg, #ffe5ed, #fff4e7);
+      border-bottom: 2px dashed #e8a5ba;
+    }
+    .logo { font-size: 2.4rem; }
+    h1 { margin: 4px 0; font-family: Georgia, serif; font-size: clamp(2rem, 7vw, 3.3rem); }
+    header p { margin: 8px 0 0; }
+    .tag {
+      display: inline-block; margin-top: 14px; padding: 6px 13px;
+      background: white; border-radius: 999px; font-size: .9rem;
+    }
+    main { width: min(1100px, 92%); margin: 28px auto 60px; }
+    .intro { text-align: center; margin-bottom: 24px; }
+    .intro h2, .cart h2 { font-family: Georgia, serif; }
+    .products {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card, .cart {
+      background: white; border: 1px solid #f0dce0; border-radius: 22px;
+      box-shadow: var(--shadow); overflow: hidden;
+    }
+    .food-art {
+      display: grid; place-items: center; height: 155px;
+      background: linear-gradient(135deg, #ffe5ed, #fff0d9); font-size: 5rem;
+    }
+    .card-content { padding: 18px; }
+    .card h3 { margin: 0 0 5px; }
+    .desc { color: #806d67; min-height: 45px; font-size: .94rem; }
+    .price { color: var(--pink-dark); font-size: 1.35rem; font-weight: 800; margin: 12px 0; }
+    button {
+      border: 0; border-radius: 12px; padding: 12px 16px; font: inherit;
+      font-weight: 700; cursor: pointer; transition: transform .12s, opacity .12s;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid #9a6ec7; outline-offset: 2px;
+    }
+    .primary { background: var(--pink-dark); color: white; width: 100%; }
+    .secondary { background: #fce8ee; color: var(--brown); }
+    .cart { margin-top: 28px; padding: 22px; }
+    .cart h2 { margin-top: 0; }
+    .empty { color: #806d67; }
+    .cart-item {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 10px;
+      align-items: center; padding: 12px 0; border-bottom: 1px solid #f1e5e4;
+    }
+    .qty { display: flex; align-items: center; gap: 8px; }
+    .qty button { padding: 5px 10px; background: #fce8ee; }
+    .remove { color: #a33e5e; background: transparent; padding: 5px; }
+    .total { display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: 800; margin: 18px 0; }
+    form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-weight: 700; font-size: .94rem; }
+    input, select, textarea {
+      width: 100%; padding: 12px; border: 1px solid #e6cdd2;
+      border-radius: 10px; background: #fffdfb; color: var(--brown); font: inherit;
+    }
+    .note { font-size: .88rem; color: #806d67; }
+    .notice { background: #fff2d9; padding: 12px 14px; border-radius: 12px; font-size: .9rem; }
+    footer { text-align: center; padding: 25px 18px; background: #ffe5ed; }
+    @media (max-width: 580px) {
+      form { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .cart-item { grid-template-columns: 1fr auto; }
+      .cart-item .item-price { grid-column: 1; }
+      .cart-item .qty { grid-column: 2; grid-row: 1 / span 2; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true">🧁🍓</div>
+    <h1>Doceria Prazeres</h1>
+    <p>Um docinho de carinho em cada colherada ♡</p>
+    <span class="tag">🚪 Entregas somente no seu condomínio</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Nosso cantinho de doces</h2>
+      <p>Escolha seus favoritos e peça pelo WhatsApp.</p>
+    </section>
+
+    <section class="products" aria-label="Catálogo de doces">
+      <article class="card">
+        <div class="food-art" aria-hidden="true">🍫</div>
+        <div class="card-content">
+          <h3>Brownie chocolatudo</h3>
+          <p class="desc">Brownie macio, com sabor intenso de chocolate.</p>
+          <div class="price">R$ 6,00</div>
+          <button class="primary" type="button" onclick="addToCart('brownie')">Adicionar ao carrinho</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="food-art" aria-hidden="true">🍰</div>
+        <div class="card-content">
+          <h3>Bolo no pote</h3>
+          <p class="desc">Camadas fofinhas de bolo e recheio cremoso.</p>
+          <div class="price">R$ 10,00</div>
+          <button class="primary" type="button" onclick="addToCart('bolo')">Adicionar ao carrinho</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="cart" aria-labelledby="cart-title">
+      <h2 id="cart-title">🛒 Teu carrinho</h2>
+      <div id="cart-items" aria-live="polite"><p class="empty">Ainda não tem docinho aqui. Escolhe um do catálogo!</p></div>
+      <div class="total"><span>Total</span><span id="total">R$ 0,00</span></div>
+
+      <h2>🚪 Dados para entrega</h2>
+      <p class="note">Preenche os dados para a entrega dentro do condomínio.</p>
+      <form id="order-form">
+        <div class="field">
+          <label for="customer">Teu nome *</label>
+          <input id="customer" name="customer" autocomplete="name" required maxlength="80" placeholder="Como podemos te chamar?">
+        </div>
+        <div class="field">
+          <label for="block">Bloco / torre</label>
+          <input id="block" name="block" maxlength="40" placeholder="Ex.: Bloco B (se houver)">
+        </div>
+        <div class="field">
+          <label for="house">Número da casa ou apê *</label>
+          <input id="house" name="house" required maxlength="30" placeholder="Ex.: Casa 12 ou apê 204">
+        </div>
+        <div class="field">
+          <label for="payment">Forma de pagamento *</label>
+          <select id="payment" name="payment" required>
+            <option value="">Escolhe uma opção</option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="details">Observações (opcional)</label>
+          <textarea id="details" name="details" rows="2" maxlength="300" placeholder="Ex.: troco para R$ 20,00 ou alguma observação"></textarea>
+        </div>
+        <div class="field full">
+          <p class="notice">Ao finalizar, o WhatsApp abrirá com os detalhes do pedido. Confere tudo e toca em <strong>Enviar</strong> para o pedido chegar à loja.</p>
+          <button class="primary" type="submit">Finalizar pedido no WhatsApp 💬</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Feito com 🍓 e carinho pela <strong>Doceria Prazeres</strong>
+    <div class="note">Pedidos sujeitos à confirmação de disponibilidade.</div>
+  </footer>
+
+  <script>
+    // Para alterar preços, edite os valores abaixo.
+    const products = {
+      brownie: { name: "Brownie chocolatudo", price: 6.00 },
+      bolo: { name: "Bolo no pote", price: 10.00 }
+    };
+    // WhatsApp da loja: somente números, incluindo código do país e DDD.
+    const WHATSAPP = "5591983080900";
+    const cart = {};
+
+    const money = value => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+
+    function addToCart(id) {
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+    }
+
+    function changeQty(id, delta) {
+      cart[id] = (cart[id] || 0) + delta;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+
+    function removeItem(id) {
+      delete cart[id];
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cart-items");
+      const ids = Object.keys(cart);
+      if (!ids.length) {
+        container.innerHTML = '<p class="empty">Ainda não tem docinho aqui. Escolhe um do catálogo!</p>';
+        document.getElementById("total").textContent = money(0);
+        return;
+      }
+      let total = 0;
+      container.innerHTML = ids.map(id => {
+        const product = products[id];
+        const qty = cart[id];
+        const subtotal = product.price * qty;
+        total += subtotal;
+        return `<div class="cart-item">
+          <div><strong>${product.name}</strong><div class="note item-price">${money(subtotal)}</div></div>
+          <div class="qty">
+            <button type="button" aria-label="Diminuir ${product.name}" onclick="changeQty('${id}', -1)">−</button>
+            <span>${qty}</span>
+            <button type="button" aria-label="Aumentar ${product.name}" onclick="changeQty('${id}', 1)">+</button>
+          </div>
+          <button type="button" class="remove" onclick="removeItem('${id}')">Remover</button>
+        </div>`;
+      }).join("");
+      document.getElementById("total").textContent = money(total);
+    }
+
+    document.getElementById("order-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const ids = Object.keys(cart);
+      if (!ids.length) {
+        alert("Teu carrinho está vazio! Adiciona pelo menos um doce antes de finalizar.");
+        return;
+      }
+      const data = new FormData(event.currentTarget);
+      const customer = String(data.get("customer") || "").trim();
+      const block = String(data.get("block") || "").trim();
+      const house = String(data.get("house") || "").trim();
+      const payment = String(data.get("payment") || "").trim();
+      const details = String(data.get("details") || "").trim();
+
+      let total = 0;
+      const lines = ids.map(id => {
+        const p = products[id];
+        const subtotal = p.price * cart[id];
+        total += subtotal;
+        return `• ${cart[id]}x ${p.name} — ${money(subtotal)}`;
+      });
+
+      const message = [
+        "🍓 *NOVO PEDIDO — DOCERIA PRAZERES*",
+        "",
+        "*Itens:*",
+        ...lines,
+        "",
+        `*Total: ${money(total)}*`,
+        "",
+        "*Entrega no condomínio:*",
+        `*Nome:* ${customer}`,
+        `*Casa/apartamento:* ${house}`,
+        `*Bloco/torre:* ${block || "Não informado"}`,
+        `*Pagamento:* ${payment}`,
+        details ? `*Observações:* ${details}` : "",
+        "",
+        "Pedido enviado pelo site. Aguardo confirmação!"
+      ].filter(Boolean).join("\n");
+
+      const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>
